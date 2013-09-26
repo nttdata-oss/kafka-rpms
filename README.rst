@@ -12,6 +12,7 @@ Concept
 * Manage the serice packages separately from the main sources of Kafka.
 * Make "kafka" user and "kafka" group to start processes.
 * Use the shell script function provided by the Kafka project to manage processes in the init script.
+* Kafka 0.7.2 is used in the following procedure.
 
 ==========================
 Requriement
