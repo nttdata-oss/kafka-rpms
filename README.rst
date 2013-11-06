@@ -18,7 +18,14 @@ Concept
 Requriement
 ==========================
 * Internet access
-* Distribution: CentOS6
+* Linux distribution: CentOS6
+
+  + We used CentOS 6.4 64bit
+
+* JDK6 or JDK7
+
+  + We used Oracle JDK7
+
 * The following packages should be installed.
 
   + rpm-build

@@ -89,7 +89,3 @@ echo $(cd %{buildroot} && find . | cut -c 2-) | tr ' ' '\n' > files.txt
 %pre
 getent group %{kafka_group} >/dev/null || groupadd -r %{kafka_group}
 getent passwd %{kafka_user} >/dev/null || /usr/sbin/useradd --comment "Storm Daemon User" --shell /bin/bash -M -r -g %{kafka_group} --home %{kafka_home} %{kafka_user}
-
-%changelog
-* Thu Aug 15 2013 dobachi - 0.7.2
-- Initial Packaging
