@@ -5,7 +5,7 @@ README
 .. sectnum::
 
 ==========================
-Concept
+Feature
 ==========================
 
 * Deploy binaries of Kafka to /var/lib/kafka.
