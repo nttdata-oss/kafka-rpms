@@ -2,7 +2,7 @@
 %define kafka_branch 0.7
 %define kafka_ver 0.7.2
 %define kafka_version 0.7.2
-%define kafka_home /var/lib/kafka/default
+%define kafka_home /usr/lib/kafka/default
 %define kafka_user kafka
 %define kafka_group kafka
 
@@ -11,11 +11,11 @@
 Summary: A high-throughput distributed messaging system.
 Name: kafka
 Version: %{kafka_version}
-Release: 1
+Release: 2
 License: Apache License v2.0
 Group: Applications/Databases
 URL: http://incubator.apache.org/kafka/
-Source0: http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/incubator/kafka/kafka-0.7.2-incubating/kafka-0.7.2-incubating-src.tgz
+Source0: http://archive.apache.org/dist/kafka/old_releases/kafka-0.7.2-incubating/kafka-0.7.2-incubating-src.tgz 
 BuildRoot: %{_tmppath}/%{name}-%{kafka_version}-%{release}-root
 BuildRequires: jdk
 Requires: jdk
@@ -73,9 +73,9 @@ design page for more details.
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
 
 # Copy the kafka file to the right places
-%{__mkdir_p} %{buildroot}/var/lib/kafka/kafka-%{version}-incubating-src
-%{__cp} -R * %{buildroot}/var/lib/kafka/kafka-%{version}-incubating-src/
-%{__ln_s} /var/lib/kafka/kafka-%{version}-incubating-src %{buildroot}/var/lib/kafka/default
+%{__mkdir_p} %{buildroot}/usr/lib/kafka/kafka-%{version}-incubating-src
+%{__cp} -R * %{buildroot}/usr/lib/kafka/kafka-%{version}-incubating-src/
+%{__ln_s} /usr/lib/kafka/kafka-%{version}-incubating-src %{buildroot}/usr/lib/kafka/default
 
 # Form a list of files for the files directive
 echo $(cd %{buildroot} && find . | cut -c 2-) | tr ' ' '\n' > files.txt
@@ -88,4 +88,5 @@ echo $(cd %{buildroot} && find . | cut -c 2-) | tr ' ' '\n' > files.txt
 
 %pre
 getent group %{kafka_group} >/dev/null || groupadd -r %{kafka_group}
-getent passwd %{kafka_user} >/dev/null || /usr/sbin/useradd --comment "Storm Daemon User" --shell /bin/bash -M -r -g %{kafka_group} --home %{kafka_home} %{kafka_user}
+getent passwd %{kafka_user} >/dev/null || /usr/sbin/useradd --comment "Kafka Daemon User" --shell /bin/bash -M -r -g %{kafka_group} --home %{kafka_home} %{kafka_user}
+

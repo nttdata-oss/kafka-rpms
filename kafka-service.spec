@@ -2,7 +2,7 @@
 %define kafka_branch 0.7
 %define kafka_ver 0.7.2
 %define kafka_version 0.7.2
-%define kafka_home /var/lib/kafka/default
+%define kafka_home /usr/lib/kafka/default
 %define kafka_user kafka
 %define kafka_group kafka
 
@@ -11,7 +11,7 @@
 Summary: A Daemon Package of Apache Kafka
 Name: kafka-service
 Version: %{kafka_version}
-Release: 1
+Release: 2
 License: Apache License v2.0
 Group: Applications/Databases
 URL: http://incubator.apache.org/kafka/
