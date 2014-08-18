@@ -1,2 +1,2 @@
-KAFKA_OPTS="-Xmx512M -server -Dlog4j.configuration=file:/etc/kafka/log4j.properties"
-
+KAFKA_OPTS="-Xmx512M -server" 
+KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties"

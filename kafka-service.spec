@@ -1,21 +1,21 @@
 %define kafka_name kafka
-%define kafka_branch 0.7
-%define kafka_ver 0.7.2
-%define kafka_version 0.7.2
+%define kafka_branch 0.8
+%define kafka_ver 0.8.1.1
+%define kafka_version 0.8.1.1
 %define kafka_home /usr/lib/kafka/default
 %define kafka_user kafka
 %define kafka_group kafka
 
-%define kafka_version 0.7.2
+%define kafka_version 0.8.1.1
 
 Summary: A Daemon Package of Apache Kafka
 Name: kafka-service
 Version: %{kafka_version}
-Release: 2
+Release: 4
 License: Apache License v2.0
 Group: Applications/Databases
 URL: http://incubator.apache.org/kafka/
-Source0: kafka-service-0.7.2.tgz
+Source0: kafka-service-0.8.1.1.tgz
 BuildRoot: %{_tmppath}/%{name}-%{kafka_version}-%{release}-root
 Requires: jdk, kafka
 Requires(post): chkconfig initscripts
@@ -75,7 +75,6 @@ design page for more details.
 %{__mkdir_p} %{buildroot}/etc/init.d
 %{__mkdir_p} %{buildroot}/etc/kafka
 %{__mkdir_p} %{buildroot}/var/run/kafka
-%{__mkdir_p} %{buildroot}/var/log/kafka
 
 %{__mv} init.d/kafka-server %{buildroot}/etc/init.d
 %{__mv} kafka/server.properties kafka/log4j.properties %{buildroot}/etc/kafka
@@ -93,7 +92,6 @@ design page for more details.
 /etc/kafka/server.properties
 /etc/kafka/log4j.properties
 /var/run/kafka
-/var/log/kafka
 
 %pre
 getent group %{kafka_group} >/dev/null || groupadd -r %{kafka_group}
