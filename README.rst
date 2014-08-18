@@ -8,7 +8,7 @@ README
 Feature
 ==========================
 
-* Deploy binaries of Kafka to /var/lib/kafka.
+* Deploy binaries of Kafka to /usr/lib/kafka.
 * Manage the serice packages separately from the main sources of Kafka.
 * Make "kafka" user and "kafka" group to start processes.
 * Use the shell script function provided by the Kafka project to manage processes in the init script.
