@@ -1,0 +1,24 @@
+diff -NruB kafka_2.10-0.8.1.1.orig/config/log4j.properties kafka_2.10-0.8.1.1.new/config/log4j.properties
+--- kafka_2.10-0.8.1.1.orig/config/log4j.properties	2014-04-23 03:37:23.000000000 +0900
++++ kafka_2.10-0.8.1.1.new/config/log4j.properties	2014-07-12 02:23:20.849846503 +0900
+@@ -13,7 +13,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-kafka.logs.dir=logs
++kafka.logs.dir=/var/log/kafka
+ 
+ log4j.rootLogger=INFO, stdout 
+ 
+diff -NruB kafka_2.10-0.8.1.1.orig/config/server.properties kafka_2.10-0.8.1.1.new/config/server.properties
+--- kafka_2.10-0.8.1.1.orig/config/server.properties	2014-04-23 03:37:23.000000000 +0900
++++ kafka_2.10-0.8.1.1.new/config/server.properties	2014-07-12 00:37:21.159853316 +0900
+@@ -55,7 +55,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma seperated list of directories under which to store log files
+-log.dirs=/tmp/kafka-logs
++log.dirs=/var/kafka
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across

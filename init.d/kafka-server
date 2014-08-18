@@ -11,10 +11,10 @@
 . /etc/rc.d/init.d/functions
 
 SYSCONFIG="/etc/sysconfig/kafka"
-KAFKA_BASEDIR=${KAFKA_BASEDIR-/var/lib/kafka/default}
+KAFKA_BASEDIR=${KAFKA_BASEDIR-/usr/lib/kafka/default}
 PIDFILE="/var/run/kafka.pid"
 KAFKA_USER="kafka"
-OUTFILE="/var/log/kafka/kafka-server.out"
+OUTFILE="/var/log/kafka/server.out"
 
 . "$SYSCONFIG" || true
 
@@ -25,7 +25,11 @@ start()
   echo -n $"Starting kafka: "
   touch $PIDFILE && chown kafka $PIDFILE
   export KAFKA_OPTS
-  daemon --user $KAFKA_USER --pidfile $PIDFILE "$CMD"
+  export KAFKA_LOG4J_OPTS
+  (
+    cd $KAFKA_BASEDIR
+    daemon --user $KAFKA_USER --pidfile $PIDFILE "$CMD"
+  )
   RETVAL=$?
   [ $RETVAL -eq 0 ] && touch /var/lock/subsys/kafka && success || failure
   echo
@@ -35,8 +39,12 @@ start()
 stop()
 {
   echo -n $"Stopping kafka: "
-  killproc -p $PIDFILE kafka
-  RETVAL=$?
+  if [ -f "$PIDFILE" ] ; then
+    killproc -p $PIDFILE kafka
+  else
+    echo "PIDFILE: $PIDFILE not exists"
+    RETVAL=1
+  fi
   echo
   [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/kafka
   return $RETVAL
